@@ -147,6 +147,21 @@ func (x *UserRegisterReq) Check() error {
 	return nil
 }
 
+func (x *UserDeleteReq) Check() error {
+	if x.UserIDs == nil {
+		return errors.New("userIDs are empty")
+	}
+	for _, u := range x.UserIDs {
+		switch {
+		case u == "":
+			return errors.New("user is empty")
+		case !datautil.IsLegalUserID(u):
+			return errors.New("userID is legal")
+		}
+	}
+	return nil
+}
+
 func (x *GetGlobalRecvMessageOptReq) Check() error {
 	if x.UserID == "" {
 		return errors.New("UserID is empty")

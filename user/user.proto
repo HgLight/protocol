@@ -123,6 +123,12 @@ message userRegisterReq {
 }
 message userRegisterResp {}
 
+message userDeleteReq {
+  repeated string userIDs = 1;
+}
+
+message userDeleteResp {}
+
 message getGlobalRecvMessageOptReq {
   string userID = 1;
 }
@@ -381,6 +387,8 @@ service user {
   rpc getPaginationUsers(getPaginationUsersReq) returns (getPaginationUsersResp);
   //user registration
   rpc userRegister(userRegisterReq) returns (userRegisterResp);
+  //user delete
+  rpc userDelete(userDeleteReq) returns (userDeleteResp);
   //Get all user IDs
   rpc getAllUserID(getAllUserIDReq) returns (getAllUserIDResp);
   //Get the total number of users and the user increment within a specified time period
